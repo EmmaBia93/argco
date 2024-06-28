@@ -12,7 +12,7 @@ const mutations = {
 
 const actions = {
   fetchAuthors({ commit }) {
-    authorService.getAllAuthors().then(response => {
+    authorService.getAuthors().then(response => {
       commit('SET_AUTHORS', response.data);
     }).catch(error => {
       console.error("Error fetching authors:", error);

@@ -3,7 +3,7 @@
     <input
       type="text"
       v-model="query"
-      placeholder="Search for books..."
+      placeholder="Buscar libros..."
       @input="handleInput"
     />
   </div>
@@ -13,7 +13,7 @@
 export default {
   data() {
     return {
-      query: ""
+      query: "" 
     };
   },
   methods: {
@@ -23,16 +23,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.search-bar {
-  margin: 1em 0;
-}
-.search-bar input {
-  width: 100%;
-  padding: 0.5em;
-  font-size: 1em;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-</style>

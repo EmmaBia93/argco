@@ -1,21 +1,28 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/books';
+const apiClient = axios.create({
+  baseURL: 'http://localhost:5000/api',
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
 
 export default {
-  getAllBooks() {
-    return axios.get(API_URL);
+  getBooks() {
+    return apiClient.get('/books');
   },
-  getBookById(id) {
-    return axios.get(`${API_URL}/${id}`);
+  getBook(id) {
+    return apiClient.get(`/books/${id}`);
   },
   createBook(book) {
-    return axios.post(API_URL, book);
+    return apiClient.post('/books', book);
   },
   updateBook(id, book) {
-    return axios.put(`${API_URL}/${id}`, book);
+    return apiClient.put(`/books/${id}`, book);
   },
   deleteBook(id) {
-    return axios.delete(`${API_URL}/${id}`);
+    return apiClient.delete(`/books/${id}`);
   }
 };

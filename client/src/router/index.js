@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import BookAdd from '../views/BookAdd.vue';
-import BookEdit from '../views/BookEdit.vue';
 import BookDetail from '../views/BookDetail.vue';
+import BookList from '../views/BookList.vue';
 
 const routes = [
   {
@@ -11,15 +10,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/books/add',
-    name: 'BookAdd',
-    component: BookAdd
-  },
-  {
-    path: '/books/:id/edit',
-    name: 'BookEdit',
-    component: BookEdit,
-    props: true
+    path: '/books',
+    name: 'BookList',
+    component: BookList
   },
   {
     path: '/books/:id',

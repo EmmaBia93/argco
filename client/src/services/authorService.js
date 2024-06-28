@@ -1,12 +1,19 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/authors';
+const apiClient = axios.create({
+  baseURL: 'http://localhost:5000/api',
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
 
 export default {
-  getAllAuthors() {
-    return axios.get(API_URL);
+  getAuthors() {
+    return apiClient.get('/authors');
   },
-  getAuthorById(id) {
-    return axios.get(`${API_URL}/${id}`);
+  getAuthor(id) {
+    return apiClient.get(`/authors/${id}`);
   }
 };

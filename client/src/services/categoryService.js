@@ -1,12 +1,19 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/categories';
+const apiClient = axios.create({
+  baseURL: 'http://localhost:5000/api',
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
 
 export default {
-  getAllCategories() {
-    return axios.get(API_URL);
+  getCategories() {
+    return apiClient.get('/categories');
   },
-  getCategoryById(id) {
-    return axios.get(`${API_URL}/${id}`);
+  getCategory(id) {
+    return apiClient.get(`/categories/${id}`);
   }
 };

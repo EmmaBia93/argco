@@ -1,11 +1,8 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <!-- Lista de libros -->
   </div>
 </template>
 
 <script setup>
 </script>
-
-<style scoped>
-</style>

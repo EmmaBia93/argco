@@ -2,10 +2,10 @@
   <div v-if="book">
     <h1>{{ book.title }}</h1>
     <p>{{ book.synopsis }}</p>
-    <p><strong>Author:</strong> {{ book.author.first_name }} {{ book.author.last_name }}</p>
-    <p><strong>Category:</strong> {{ book.category.name }}</p>
-    <router-link :to="`/books/${book.id}/edit`">Edit</router-link>
-    <button @click="deleteBook(book.id)">Delete</button>
+    <p><strong>Autor:</strong> {{ book.author.first_name }} {{ book.author.last_name }}</p>
+    <p><strong>Categoría:</strong> {{ book.category.name }}</p>
+    <router-link :to="`/books/${book.id}/edit`">Editar</router-link>
+    <button @click="deleteBook(book.id)">Eliminar</button>
   </div>
 </template>
 

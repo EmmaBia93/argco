@@ -12,7 +12,7 @@ const mutations = {
 
 const actions = {
   fetchCategories({ commit }) {
-    categoryService.getAllCategories().then(response => {
+    categoryService.getCategories().then(response => {
       commit('SET_CATEGORIES', response.data);
     }).catch(error => {
       console.error("Error fetching categories:", error);
