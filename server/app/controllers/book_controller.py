@@ -24,7 +24,8 @@ def create_book():
     cover = data['cover']
     synopsis = data['synopsis']
     publication_date = data['publication_date']
-    author = data['author']
+    author_first_name = data['author_first_name']
+    author_last_name = data['author_last_name']
     category_id = data['category_id']
 
     # Check if category_id exists
@@ -34,7 +35,6 @@ def create_book():
         return jsonify({'error': 'Category not found'}), 404
 
     # Check if author exists, create if not
-    author_first_name, author_last_name = author.split()
     author = Author.query.filter_by(first_name=author_first_name, last_name=author_last_name).first()
 
     if not author:
@@ -69,29 +69,27 @@ def update_book(id):
     book.cover = data['cover']
     book.synopsis = data['synopsis']
     book.publication_date = data['publication_date']
-
-    #Check if category_id exists
+    author_first_name = data['author_first_name']
+    author_last_name = data['author_last_name']
     category_id = data['category_id']
+
+    # Check if category_id exists
     category = Category.query.get(category_id)
-    
     if not category:
         return jsonify({'error': 'Category not found'}), 404
+    else:
+        book.category_id = category_id
+    
+    # Check if author exists, create if not
+    author = Author.query.filter_by(first_name=author_first_name, last_name=author_last_name).first()
+    if not author:
+        author = Author(first_name=author_first_name, last_name=author_last_name)
+        db.session.add(author)
+        db.session.commit()
 
-    # Check and update author if provided
-    if 'author' in data:
-        author = data['author']
-        author_first_name, author_last_name = author.split()
-        
-        # Check if author exists, create if not
-        author = Author.query.filter_by(first_name=author_first_name, last_name=author_last_name).first()
-        if not author:
-            author = Author(first_name=author_first_name, last_name=author_last_name)
-            db.session.add(author)
-            db.session.commit()
-        
-        # Update book's author_id
         book.author_id = author.id
-
+        
+    # Update book to database
     db.session.commit()
 
     return jsonify(book.to_dict()), 200
