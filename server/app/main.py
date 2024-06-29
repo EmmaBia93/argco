@@ -9,8 +9,9 @@ from app.routes.category_routes import category_bp
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.url_map.strict_slashes = False
     
-    CORS(app)  # Habilitar CORS para toda la aplicación
+    CORS(app)
     
     db.init_app(app)
     
