@@ -4,3 +4,4 @@ Flask-SQLAlchemy==3.0.4
 Flask-WTF==1.1.1
 mysql-connector-python==8.2.0
 python-dotenv
+gunicorn
