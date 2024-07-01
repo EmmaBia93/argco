@@ -1,32 +1,28 @@
-import categoryService from '../services/categoryService';
-
-const state = {
-  categories: []
-};
-
-const mutations = {
-  SET_CATEGORIES(state, categories) {
-    state.categories = categories;
-  }
-};
-
-const actions = {
-  fetchCategories({ commit }) {
-    categoryService.getCategories().then(response => {
-      commit('SET_CATEGORIES', response.data);
-    }).catch(error => {
-      console.error("Error fetching categories:", error);
-    });
-  }
-};
-
-const getters = {
-  allCategories: state => state.categories
-};
+import categoryService from "../services/categoryService";
 
 export default {
-  state,
-  mutations,
-  actions,
-  getters
+  namespaced: true,
+  state: {
+    categories: [],
+  },
+  mutations: {
+    SET_CATEGORIES(state, categories) {
+      state.categories = categories;
+    },
+  },
+  actions: {
+    fetchCategories({ commit }) {
+      categoryService
+        .getCategories()
+        .then((response) => {
+          commit("SET_CATEGORIES", response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching categories:", error);
+        });
+    },
+  },
+  getters: {
+    allCategories: (state) => state.categories,
+  },
 };
